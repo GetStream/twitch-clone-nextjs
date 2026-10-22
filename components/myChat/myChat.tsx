@@ -7,15 +7,16 @@ import type { LocalMessage, Message, SendMessageOptions } from 'stream-chat';
 import {
   Channel,
   Chat,
-  MessageInput,
-  MessageInputProps,
+  MessageComposer,
+  MessageComposerProps,
   MessageList,
   Window,
+  WithComponents,
 } from 'stream-chat-react';
 import CustomChannelHeader from './customChannelHeader';
 
 import { createTokenProvider } from '@/lib/streamClient';
-import 'stream-chat-react/dist/css/v2/index.css';
+import 'stream-chat-react/css/index.css';
 import CustomMessage from './customMessage';
 
 export default function MyChat({
@@ -75,7 +76,7 @@ export default function MyChat({
     }
   }, [client, userName, userId, channel]);
 
-  const submitHandler: MessageInputProps['overrideSubmitHandler'] = useCallback(
+  const submitHandler: MessageComposerProps['overrideSubmitHandler'] = useCallback(
     async (params: {
       cid: string;
       localMessage: LocalMessage;
@@ -100,13 +101,15 @@ export default function MyChat({
 
   return (
     <Chat client={client}>
-      <Channel channel={channel} Message={CustomMessage}>
-        <Window>
-          <CustomChannelHeader setChatExpanded={setChatExpanded} />
-          <MessageList />
-          <MessageInput overrideSubmitHandler={submitHandler} />
-        </Window>
-      </Channel>
+      <WithComponents overrides={{ Message: CustomMessage }}>
+        <Channel channel={channel}>
+          <Window>
+            <CustomChannelHeader setChatExpanded={setChatExpanded} />
+            <MessageList />
+            <MessageComposer overrideSubmitHandler={submitHandler} />
+          </Window>
+        </Channel>
+      </WithComponents>
     </Chat>
   );
 }

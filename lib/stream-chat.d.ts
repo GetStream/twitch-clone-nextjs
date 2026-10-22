@@ -1,5 +1,7 @@
+import 'stream-chat';
+
 declare module 'stream-chat' {
-  interface MyCustomMessageData extends CustomMessageData {
+  interface CustomMessageData {
     color?: string;
     isStreamer?: boolean;
   }

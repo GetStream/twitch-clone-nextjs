@@ -2,14 +2,14 @@ import { createToken } from '@/app/actions';
 import {
   StreamVideoClient,
   TokenProvider,
-  User,
+  UserRequest,
 } from '@stream-io/video-client';
 
 let client: StreamVideoClient | undefined;
 
 export const getClient = (creds: {
   apiKey: string;
-  user?: User;
+  user: Omit<UserRequest, 'role'>;
   userToken?: string;
 }) => {
   if (!client) {
@@ -17,7 +17,7 @@ export const getClient = (creds: {
       apiKey: creds.apiKey,
       user: creds.user,
       token: creds.userToken,
-      tokenProvider: createTokenProvider(creds.user?.id),
+      tokenProvider: createTokenProvider(creds.user.id),
     });
   }
 
