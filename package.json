@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.28.0",
+    "@clerk/nextjs": "^6.39.2",
     "@clerk/types": "^4.71.0",
     "@stream-io/node-sdk": "^0.8.15",
     "@stream-io/video-client": "^1.62.0",
@@ -17,7 +17,7 @@
     "@supabase/supabase-js": "^2.53.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "next": "15.4.5",
+    "next": "16.4.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "stream-chat": "^9.54.3",
